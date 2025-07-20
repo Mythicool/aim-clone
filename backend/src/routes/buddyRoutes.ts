@@ -17,6 +17,29 @@ const router = Router();
 // Apply authentication middleware to all buddy routes
 router.use(authMiddleware);
 
+// Helper function to transform BuddyWithStatus to Buddy format
+function transformBuddyWithStatusToBuddy(buddyWithStatus: any): any {
+  return {
+    id: buddyWithStatus.buddy.id,
+    screenName: buddyWithStatus.buddy.screenName,
+    email: '', // Not available in BuddyWithStatus, but required by frontend
+    profile: {
+      displayName: buddyWithStatus.buddy.displayName,
+      awayMessage: buddyWithStatus.buddy.awayMessage
+    },
+    status: buddyWithStatus.buddy.status,
+    lastSeen: buddyWithStatus.buddy.lastSeen,
+    createdAt: new Date(), // Not available, using current date
+    relationship: {
+      id: buddyWithStatus.id,
+      userId: buddyWithStatus.userId,
+      buddyId: buddyWithStatus.buddyId,
+      groupName: buddyWithStatus.groupName,
+      addedAt: buddyWithStatus.addedAt
+    }
+  };
+}
+
 // Get buddy list (root route for compatibility)
 router.get('/', async (req: Request, res: Response) => {
   try {
@@ -28,7 +51,8 @@ router.get('/', async (req: Request, res: Response) => {
 
     const buddyService = createBuddyService();
 
-    const buddies = await buddyService.getBuddyList(userId);
+    const buddiesWithStatus = await buddyService.getBuddyList(userId);
+    const buddies = buddiesWithStatus.map(transformBuddyWithStatusToBuddy);
     res.json(buddies);
   } catch (error) {
     console.error('Error getting buddy list:', error);
@@ -209,15 +233,16 @@ router.get('/list', async (req: Request, res: Response) => {
 
     const buddyService = createBuddyService();
 
-    const buddies = await buddyService.getBuddyList(userId);
+    const buddiesWithStatus = await buddyService.getBuddyList(userId);
+    const buddies = buddiesWithStatus.map(transformBuddyWithStatusToBuddy);
     res.json(buddies);
   } catch (error) {
     console.error('Error getting buddy list:', error);
-    res.status(500).json({ 
-      error: { 
-        code: 'INTERNAL_ERROR', 
-        message: 'Failed to retrieve buddy list' 
-      } 
+    res.status(500).json({
+      error: {
+        code: 'INTERNAL_ERROR',
+        message: 'Failed to retrieve buddy list'
+      }
     });
   }
 });
