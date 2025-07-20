@@ -101,9 +101,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const login = async (screenName: string, password: string) => {
     dispatch({ type: 'AUTH_START' });
-    
+
     try {
-      const response = await fetch('/api/auth/login', {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+      const response = await fetch(`${apiUrl}/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -136,9 +137,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const register = async (screenName: string, password: string, email: string) => {
     dispatch({ type: 'AUTH_START' });
-    
+
     try {
-      const response = await fetch('/api/auth/register', {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+      const response = await fetch(`${apiUrl}/api/auth/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

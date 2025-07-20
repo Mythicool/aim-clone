@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
+import { authenticatedFetch } from '../../utils/api';
 import { UserProfile } from '../../types';
 import './ProfileWindow.css';
 
@@ -27,11 +28,7 @@ export const ProfileWindow: React.FC<ProfileWindowProps> = ({ onClose }) => {
       
       try {
         setIsLoading(true);
-        const response = await fetch(`/api/users/profile`, {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
+        const response = await authenticatedFetch('api/users/profile', token);
 
         if (!response.ok) {
           throw new Error('Failed to load profile');
@@ -67,12 +64,8 @@ export const ProfileWindow: React.FC<ProfileWindowProps> = ({ onClose }) => {
       setIsSaving(true);
       setError(null);
       
-      const response = await fetch('/api/users/profile', {
+      const response = await authenticatedFetch('api/users/profile', token, {
         method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
         body: JSON.stringify(profile)
       });
 

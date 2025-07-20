@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { UserStatus } from '../../types';
 import { socketService } from '../../services/socket';
+import { authenticatedFetch } from '../../utils/api';
 import { AwayMessageDialog } from './AwayMessageDialog';
 import './StatusManager.css';
 
@@ -117,12 +118,8 @@ export const StatusManager: React.FC<StatusManagerProps> = ({ onStatusChange }) 
       socket.emit('user:status-change', { status });
       
       // Also update via API for persistence
-      fetch('/api/users/status', {
+      authenticatedFetch('api/users/status', token, {
         method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
         body: JSON.stringify({ status })
       })
       .then(response => {

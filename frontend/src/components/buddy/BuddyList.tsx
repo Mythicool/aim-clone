@@ -4,6 +4,7 @@ import { UserStatus } from '../../types';
 import { useAuth } from '../../contexts/AuthContext';
 import { useUserPreferences } from '../../contexts/UserPreferencesContext';
 import { socketService } from '../../services/socket';
+import { authenticatedFetch } from '../../utils/api';
 import { AddBuddyDialog } from './AddBuddyDialog';
 import { RemoveBuddyDialog } from './RemoveBuddyDialog';
 import { BuddyProfileDialog } from './BuddyProfileDialog';
@@ -84,11 +85,7 @@ export const BuddyList: React.FC<BuddyListProps> = ({
 
     try {
       setIsLoading(true);
-      const response = await fetch('/api/buddies', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      const response = await authenticatedFetch('api/buddies', token);
 
       if (!response.ok) {
         throw new Error('Failed to fetch buddy list');

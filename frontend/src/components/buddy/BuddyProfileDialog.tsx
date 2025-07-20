@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
+import { authenticatedFetch } from '../../utils/api';
 import type { Buddy, UserProfile } from '../../types';
 import './BuddyProfileDialog.css';
 
@@ -34,11 +35,7 @@ export const BuddyProfileDialog: React.FC<BuddyProfileDialogProps> = ({
         setError(null);
 
         // Try to get detailed profile information
-        const response = await fetch(`/api/users/profile/${encodeURIComponent(buddy.screenName)}`, {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
+        const response = await authenticatedFetch(`api/users/profile/${encodeURIComponent(buddy.screenName)}`, token);
 
         if (response.ok) {
           const profileData = await response.json();

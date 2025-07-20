@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { UserStatus } from '../../types';
 import { socketService } from '../../services/socket';
+import { authenticatedFetch } from '../../utils/api';
 import './AwayMessageDialog.css';
 
 interface AwayMessageDialogProps {
@@ -97,12 +98,8 @@ export const AwayMessageDialog: React.FC<AwayMessageDialogProps> = ({
       }
       
       // Also update via API for persistence
-      const response = await fetch('/api/users/status', {
+      const response = await authenticatedFetch('api/users/status', token, {
         method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
         body: JSON.stringify({
           status: UserStatus.AWAY,
           awayMessage: awayMessage.trim()
