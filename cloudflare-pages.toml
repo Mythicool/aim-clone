@@ -15,13 +15,13 @@
 
 # Environment variables for production
 [env.production]
-  VITE_API_URL = "https://your-backend-api.com"
-  VITE_SOCKET_URL = "https://your-backend-api.com"
+  VITE_API_URL = "https://aim-backend-pg2h.onrender.com"
+  VITE_SOCKET_URL = "https://aim-backend-pg2h.onrender.com"
 
 # Environment variables for preview
 [env.preview]
-  VITE_API_URL = "https://preview-backend-api.com"
-  VITE_SOCKET_URL = "https://preview-backend-api.com"
+  VITE_API_URL = "https://aim-backend-pg2h.onrender.com"
+  VITE_SOCKET_URL = "https://aim-backend-pg2h.onrender.com"
 
 # Custom headers for security
 [[headers]]

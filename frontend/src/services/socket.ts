@@ -17,7 +17,7 @@ interface SocketServiceOptions {
 
 class SocketService {
   private socket: Socket | null = null;
-  private readonly serverUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
+  private readonly serverUrl = import.meta.env.VITE_SOCKET_URL || import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
   private connectionState: ConnectionState = {
     isConnected: false,
     isReconnecting: false,

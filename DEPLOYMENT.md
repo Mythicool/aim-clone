@@ -30,9 +30,9 @@ This guide covers deploying the AOL Instant Messenger Clone to Cloudflare Pages.
 4. **Environment Variables**
    Add these environment variables in the Cloudflare Pages dashboard:
    ```
-   VITE_API_URL=https://your-backend-url.com
-   VITE_SOCKET_URL=https://your-backend-url.com
-   NODE_VERSION=18
+   VITE_API_URL=https://aim-backend-pg2h.onrender.com
+   VITE_SOCKET_URL=https://aim-backend-pg2h.onrender.com
+   NODE_VERSION=20
    ```
 
 5. **Deploy**

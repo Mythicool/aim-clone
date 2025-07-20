@@ -3,7 +3,7 @@
 /*    /index.html   200
 
 # API routes should be handled by the backend
-/api/*  https://your-backend-url.com/api/:splat  200
+/api/*  https://aim-backend-pg2h.onrender.com/api/:splat  200
 
 # WebSocket connections for Socket.io
-/socket.io/*  https://your-backend-url.com/socket.io/:splat  200
+/socket.io/*  https://aim-backend-pg2h.onrender.com/socket.io/:splat  200
