@@ -1,0 +1,267 @@
+/* Window Transition Component Styles */
+
+.window-transition {
+  transition-property: opacity, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: var(--transition-duration, 200ms);
+  will-change: opacity, transform;
+}
+
+/* Base transition states */
+.window-transition--entering {
+  pointer-events: none;
+}
+
+.window-transition--entered {
+  pointer-events: auto;
+}
+
+.window-transition--exiting {
+  pointer-events: none;
+}
+
+.window-transition--exited {
+  pointer-events: none;
+}
+
+/* Fade Transition */
+.window-transition--fade.window-transition--entering,
+.window-transition--fade.window-transition--exiting {
+  opacity: 0;
+}
+
+.window-transition--fade.window-transition--entered {
+  opacity: 1;
+}
+
+/* Scale Transition */
+.window-transition--scale.window-transition--entering {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.window-transition--scale.window-transition--entered {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.window-transition--scale.window-transition--exiting {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+/* Slide Up Transition */
+.window-transition--slideUp.window-transition--entering {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.window-transition--slideUp.window-transition--entered {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.window-transition--slideUp.window-transition--exiting {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Slide Down Transition */
+.window-transition--slideDown.window-transition--entering {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.window-transition--slideDown.window-transition--entered {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.window-transition--slideDown.window-transition--exiting {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+/* Slide Left Transition */
+.window-transition--slideLeft.window-transition--entering {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.window-transition--slideLeft.window-transition--entered {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.window-transition--slideLeft.window-transition--exiting {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+/* Slide Right Transition */
+.window-transition--slideRight.window-transition--entering {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.window-transition--slideRight.window-transition--entered {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.window-transition--slideRight.window-transition--exiting {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+/* AIM-specific window transitions */
+.aim-window-transition {
+  transform-origin: center center;
+}
+
+.aim-window-transition--chat {
+  transform-origin: center bottom;
+}
+
+.aim-window-transition--buddy {
+  transform-origin: left top;
+}
+
+.aim-window-transition--profile,
+.aim-window-transition--preferences {
+  transform-origin: center center;
+}
+
+.aim-window-transition--dialog {
+  transform-origin: center center;
+  transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Staggered transitions */
+.staggered-window-transition {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Enhanced transitions for better UX */
+.window-transition--enhanced {
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  filter: blur(0px);
+}
+
+.window-transition--enhanced.window-transition--entering {
+  filter: blur(1px);
+}
+
+.window-transition--enhanced.window-transition--exiting {
+  filter: blur(1px);
+}
+
+/* Bounce effect for important windows */
+.window-transition--bounce.window-transition--entering {
+  animation: window-bounce-in var(--transition-duration, 200ms) cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes window-bounce-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Smooth window dragging transitions */
+.window-transition--dragging {
+  transition: none !important;
+  will-change: transform;
+}
+
+/* Focus transitions */
+.window-transition--focus {
+  transition: box-shadow 150ms ease-out, z-index 0ms;
+}
+
+.window-transition--focus.window-transition--entered {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Minimize/maximize transitions */
+.window-transition--minimize {
+  transition: all 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-origin: center bottom;
+}
+
+.window-transition--minimize.window-transition--exiting {
+  opacity: 0;
+  transform: scale(0.1) translateY(100px);
+}
+
+.window-transition--maximize {
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.window-transition--maximize.window-transition--entering {
+  transform: scale(0.95);
+}
+
+.window-transition--maximize.window-transition--entered {
+  transform: scale(1);
+}
+
+/* Performance optimizations */
+.window-transition {
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .window-transition {
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
+  }
+  
+  .window-transition--enhanced {
+    filter: none !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .window-transition--enhanced {
+    filter: none;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .window-transition {
+    transition-duration: calc(var(--transition-duration, 200ms) * 0.75);
+  }
+  
+  .window-transition--scale.window-transition--entering {
+    transform: scale(0.95);
+  }
+  
+  .staggered-window-transition {
+    gap: 2px;
+  }
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .window-transition--focus.window-transition--entered {
+    box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
+  }
+}

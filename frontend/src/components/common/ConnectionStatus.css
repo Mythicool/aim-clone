@@ -1,0 +1,105 @@
+.connection-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 11px;
+  font-family: 'MS Sans Serif', sans-serif;
+  box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #808080;
+}
+
+.connection-indicator {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.status-icon {
+  font-size: 10px;
+  line-height: 1;
+}
+
+.status-text {
+  color: #000;
+  font-weight: normal;
+}
+
+.retry-button {
+  background: #c0c0c0;
+  border: 1px outset #c0c0c0;
+  padding: 2px 4px;
+  font-size: 10px;
+  cursor: pointer;
+  border-radius: 2px;
+  line-height: 1;
+}
+
+.retry-button:hover {
+  background: #d0d0d0;
+}
+
+.retry-button:active {
+  border: 1px inset #c0c0c0;
+  background: #b0b0b0;
+}
+
+.offline-warning {
+  color: #cc0000;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+/* Status-specific styles */
+.connection-status.connected {
+  border-color: #00aa00;
+  background: rgba(200, 255, 200, 0.9);
+}
+
+.connection-status.connecting,
+.connection-status.reconnecting {
+  border-color: #ffaa00;
+  background: rgba(255, 255, 200, 0.9);
+}
+
+.connection-status.connecting .status-icon,
+.connection-status.reconnecting .status-icon {
+  animation: pulse 1s infinite;
+}
+
+.connection-status.disconnected {
+  border-color: #cc0000;
+  background: rgba(255, 200, 200, 0.9);
+}
+
+.connection-status.offline {
+  border-color: #666;
+  background: rgba(220, 220, 220, 0.9);
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Compact version for status bar */
+.connection-status.compact {
+  padding: 2px 6px;
+  font-size: 10px;
+  gap: 4px;
+}
+
+.connection-status.compact .status-text {
+  display: none;
+}
+
+.connection-status.compact .offline-warning {
+  display: none;
+}
+
+/* Tooltip styles */
+.connection-status .status-icon {
+  cursor: help;
+}

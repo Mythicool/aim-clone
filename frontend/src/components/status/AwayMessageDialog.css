@@ -1,0 +1,58 @@
+.away-message-dialog {
+  width: 350px;
+  height: 250px;
+  position: fixed;
+  z-index: 1000;
+  background-color: #ece9d8;
+  border: 1px solid #000;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.away-message-content {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 30px);
+}
+
+.away-message-form {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.away-message-label {
+  font-size: 12px;
+  margin-bottom: 5px;
+  font-family: 'Tahoma', sans-serif;
+}
+
+.away-message-input {
+  flex-grow: 1;
+  min-height: 100px;
+  padding: 5px;
+  font-family: 'Tahoma', sans-serif;
+  font-size: 12px;
+  border: 1px solid #7b9ebd;
+  resize: none;
+}
+
+.away-message-counter {
+  font-size: 10px;
+  text-align: right;
+  margin-top: 3px;
+  color: #666;
+}
+
+.away-message-error {
+  color: #cc0000;
+  font-size: 11px;
+  margin: 5px 0;
+}
+
+.away-message-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+  gap: 5px;
+}

@@ -1,0 +1,64 @@
+.status-manager {
+  position: relative;
+  display: inline-block;
+}
+
+.status-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.status-button {
+  display: flex;
+  align-items: center;
+  background-color: #ece9d8;
+  border: 1px solid #7b9ebd;
+  padding: 3px 8px;
+  font-family: 'Tahoma', sans-serif;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.status-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.status-text {
+  margin-right: 5px;
+}
+
+.status-arrow {
+  font-size: 8px;
+}
+
+.status-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #ece9d8;
+  min-width: 120px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border: 1px solid #7b9ebd;
+}
+
+.status-dropdown:hover .status-dropdown-content {
+  display: block;
+}
+
+.status-option {
+  padding: 6px 8px;
+  display: flex;
+  align-items: center;
+  font-family: 'Tahoma', sans-serif;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.status-option:hover {
+  background-color: #316ac5;
+  color: white;
+}

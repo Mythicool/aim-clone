@@ -1,0 +1,310 @@
+/* Connection Status Component Styles */
+
+.connection-status {
+  position: fixed;
+  z-index: 10000;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
+  font-family: var(--aim-font-family);
+  font-size: 12px;
+  min-width: 200px;
+  max-width: 300px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.connection-status:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Position variants */
+.connection-status--top-left {
+  top: 10px;
+  left: 10px;
+}
+
+.connection-status--top-right {
+  top: 10px;
+  right: 10px;
+}
+
+.connection-status--bottom-left {
+  bottom: 10px;
+  left: 10px;
+}
+
+.connection-status--bottom-right {
+  bottom: 10px;
+  right: 10px;
+}
+
+/* Status color variants */
+.connection-status--success {
+  border-color: #4CAF50;
+  background: rgba(76, 175, 80, 0.1);
+}
+
+.connection-status--warning {
+  border-color: #FF9800;
+  background: rgba(255, 152, 0, 0.1);
+}
+
+.connection-status--error {
+  border-color: #F44336;
+  background: rgba(244, 67, 54, 0.1);
+}
+
+/* Indicator section */
+.connection-status__indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.connection-status__icon {
+  font-size: 14px;
+  animation: connection-pulse 2s ease-in-out infinite;
+}
+
+.connection-status--error .connection-status__icon,
+.connection-status--warning .connection-status__icon {
+  animation: connection-alert 1s ease-in-out infinite;
+}
+
+.connection-status__text {
+  font-weight: 500;
+  color: #333;
+  flex: 1;
+}
+
+.connection-status--success .connection-status__text {
+  color: #2E7D32;
+}
+
+.connection-status--warning .connection-status__text {
+  color: #F57C00;
+}
+
+.connection-status--error .connection-status__text {
+  color: #C62828;
+}
+
+/* Details section */
+.connection-status__details {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.connection-status__detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+  font-size: 11px;
+}
+
+.connection-status__detail:last-child {
+  margin-bottom: 0;
+}
+
+.connection-status__detail span:first-child {
+  color: #666;
+  font-weight: 500;
+}
+
+.connection-status__value {
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.connection-status__value--success {
+  color: #2E7D32;
+}
+
+.connection-status__value--warning {
+  color: #F57C00;
+}
+
+.connection-status__value--error {
+  color: #C62828;
+}
+
+/* Actions section */
+.connection-status__actions {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.connection-status__button {
+  width: 100%;
+  padding: 6px 12px;
+  background: #007acc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.connection-status__button:hover:not(:disabled) {
+  background: #005a9e;
+}
+
+.connection-status__button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* Animations */
+@keyframes connection-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes connection-alert {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+
+/* Reconnecting animation */
+.connection-status--warning .connection-status__icon {
+  animation: connection-spin 1s linear infinite;
+}
+
+@keyframes connection-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .connection-status {
+    min-width: 180px;
+    max-width: 250px;
+    font-size: 11px;
+  }
+  
+  .connection-status__indicator {
+    padding: 6px 10px;
+    gap: 6px;
+  }
+  
+  .connection-status__details {
+    padding: 6px 10px;
+  }
+  
+  .connection-status__detail {
+    font-size: 10px;
+  }
+  
+  .connection-status__button {
+    padding: 5px 10px;
+    font-size: 10px;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .connection-status {
+    background: white;
+    border-width: 2px;
+  }
+  
+  .connection-status--success {
+    border-color: #000;
+    background: #e8f5e8;
+  }
+  
+  .connection-status--warning {
+    border-color: #000;
+    background: #fff3e0;
+  }
+  
+  .connection-status--error {
+    border-color: #000;
+    background: #ffebee;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .connection-status__icon {
+    animation: none;
+  }
+  
+  .connection-status {
+    transition: none;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .connection-status {
+    background: rgba(30, 30, 30, 0.95);
+    border-color: #555;
+    color: #fff;
+  }
+  
+  .connection-status__text {
+    color: #fff;
+  }
+  
+  .connection-status--success .connection-status__text {
+    color: #81C784;
+  }
+  
+  .connection-status--warning .connection-status__text {
+    color: #FFB74D;
+  }
+  
+  .connection-status--error .connection-status__text {
+    color: #EF5350;
+  }
+  
+  .connection-status__details {
+    background: rgba(40, 40, 40, 0.5);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .connection-status__detail span:first-child {
+    color: #ccc;
+  }
+  
+  .connection-status__value--success {
+    color: #81C784;
+  }
+  
+  .connection-status__value--warning {
+    color: #FFB74D;
+  }
+  
+  .connection-status__value--error {
+    color: #EF5350;
+  }
+}

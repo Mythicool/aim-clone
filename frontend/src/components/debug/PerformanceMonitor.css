@@ -1,0 +1,244 @@
+.performance-monitor {
+  position: fixed;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.9);
+  color: #00ff00;
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  border: 1px solid #333;
+  border-radius: 4px;
+  min-width: 180px;
+  max-width: 250px;
+  backdrop-filter: blur(4px);
+  user-select: none;
+}
+
+.performance-monitor.top-left {
+  top: 10px;
+  left: 10px;
+}
+
+.performance-monitor.top-right {
+  top: 10px;
+  right: 10px;
+}
+
+.performance-monitor.bottom-left {
+  bottom: 10px;
+  left: 10px;
+}
+
+.performance-monitor.bottom-right {
+  bottom: 10px;
+  right: 10px;
+}
+
+.monitor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 8px;
+  background: rgba(0, 0, 0, 0.8);
+  border-bottom: 1px solid #333;
+  cursor: pointer;
+  user-select: none;
+}
+
+.monitor-header:hover {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.monitor-title {
+  font-weight: bold;
+  color: #00ff00;
+}
+
+.expand-icon {
+  color: #888;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.monitor-content {
+  padding: 8px;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-row:last-child {
+  border-bottom: none;
+}
+
+.stat-label {
+  color: #ccc;
+  font-size: 10px;
+}
+
+.stat-value {
+  font-weight: bold;
+  font-size: 11px;
+  text-align: right;
+  min-width: 50px;
+}
+
+.alerts-section {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #333;
+}
+
+.alerts-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.alerts-header span {
+  color: #ffaa00;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.clear-alerts {
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 0;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clear-alerts:hover {
+  color: #fff;
+}
+
+.alerts-list {
+  max-height: 60px;
+  overflow-y: auto;
+}
+
+.alert-item {
+  font-size: 9px;
+  color: #ffaa00;
+  padding: 1px 0;
+  line-height: 1.2;
+}
+
+.monitor-actions {
+  display: flex;
+  gap: 4px;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #333;
+}
+
+.action-button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid #555;
+  color: #ccc;
+  padding: 4px 6px;
+  font-size: 9px;
+  border-radius: 2px;
+  cursor: pointer;
+  flex: 1;
+  text-align: center;
+}
+
+.action-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.action-button:active {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Compact mode */
+.performance-monitor.compact {
+  min-width: 120px;
+}
+
+.performance-monitor.compact .monitor-content {
+  padding: 4px;
+}
+
+.performance-monitor.compact .stat-row {
+  padding: 1px 0;
+}
+
+.performance-monitor.compact .stat-label,
+.performance-monitor.compact .stat-value {
+  font-size: 9px;
+}
+
+/* Scrollbar styling for alerts */
+.alerts-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.alerts-list::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.alerts-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+}
+
+.alerts-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Animation for new alerts */
+.alert-item {
+  animation: alertSlideIn 0.3s ease-out;
+}
+
+@keyframes alertSlideIn {
+  from {
+    transform: translateX(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Status indicators */
+.stat-value.critical {
+  color: #ff4444 !important;
+  animation: pulse 1s infinite;
+}
+
+.stat-value.warning {
+  color: #ffaa00 !important;
+}
+
+.stat-value.good {
+  color: #44aa44 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .performance-monitor {
+    font-size: 10px;
+    min-width: 150px;
+  }
+  
+  .performance-monitor.compact {
+    min-width: 100px;
+  }
+}

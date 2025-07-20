@@ -1,0 +1,121 @@
+.profile-window {
+  width: 400px;
+  height: 450px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
+.profile-content {
+  padding: 12px;
+  height: calc(100% - 20px);
+  overflow-y: auto;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-textarea {
+  padding: 4px;
+  border: 2px inset #c0c0c0;
+  background: white;
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 11px;
+  resize: none;
+  width: calc(100% - 12px);
+}
+
+.form-textarea:focus {
+  outline: none;
+  background: #ffffcc;
+}
+
+.form-hint {
+  font-size: 9px;
+  color: #666;
+  margin-top: 2px;
+}
+
+.profile-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #666;
+  font-size: 11px;
+}
+
+.aim-loading-animation {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.aim-loading-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #0054e3;
+  border-radius: 50%;
+  animation: loading-bounce 1.4s infinite ease-in-out both;
+}
+
+.aim-loading-dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.aim-loading-dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes loading-bounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+
+.success-message {
+  background: #e6ffe6;
+  border: 1px solid #00cc00;
+  color: #006600;
+  padding: 4px 8px;
+  font-size: 10px;
+  border-radius: 0;
+}
+
+/* Scrollbar Styling */
+.profile-content::-webkit-scrollbar {
+  width: 16px;
+}
+
+.profile-content::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border: 1px inset #c0c0c0;
+}
+
+.profile-content::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #e0e0e0 0%, #c0c0c0 100%);
+  border: 1px outset #c0c0c0;
+}
+
+.profile-content::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #d0d0d0 0%, #b0b0b0 100%);
+}
+
+.profile-content::-webkit-scrollbar-button {
+  background: linear-gradient(to bottom, #e0e0e0 0%, #c0c0c0 100%);
+  border: 1px outset #c0c0c0;
+  height: 16px;
+}
+
+.profile-content::-webkit-scrollbar-button:hover {
+  background: linear-gradient(to bottom, #d0d0d0 0%, #b0b0b0 100%);
+}

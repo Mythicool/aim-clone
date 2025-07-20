@@ -1,0 +1,453 @@
+/* Classic AIM Styling */
+
+/* AIM Color Palette */
+:root {
+  --aim-blue: #0054e3;
+  --aim-blue-dark: #0040a6;
+  --aim-blue-light: #0066ff;
+  --aim-gray: #ece9d8;
+  --aim-gray-light: #f0f0f0;
+  --aim-gray-dark: #d4d0c8;
+  --aim-border-light: #ffffff;
+  --aim-border-dark: #808080;
+  --aim-text-primary: #000000;
+  --aim-text-secondary: #666666;
+  --aim-text-link: #0054e3;
+  --aim-status-online: #00ff00;
+  --aim-status-away: #ffff00;
+  --aim-status-offline: #808080;
+  --aim-error: #cc0000;
+  --aim-warning: #856404;
+  --aim-success: #2e7d32;
+
+  /* AIM Typography */
+  --aim-font-family: 'MS Sans Serif', 'Tahoma', 'Verdana', sans-serif;
+  --aim-font-size-small: 10px;
+  --aim-font-size-normal: 11px;
+  --aim-font-size-large: 12px;
+  --aim-font-size-title: 14px;
+  --aim-line-height: 1.2;
+}
+
+.aim-window {
+  background: var(--aim-gray);
+  border: 2px outset var(--aim-border-dark);
+  border-radius: 0;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  font-family: var(--aim-font-family);
+  font-size: var(--aim-font-size-normal);
+  line-height: var(--aim-line-height);
+  position: fixed;
+  z-index: 1000;
+  /* Classic Windows 98/2000 window styling */
+  border-top-color: var(--aim-border-light);
+  border-left-color: var(--aim-border-light);
+  border-right-color: var(--aim-border-dark);
+  border-bottom-color: var(--aim-border-dark);
+}
+
+.aim-window-header {
+  background: linear-gradient(to right, var(--aim-blue) 0%, var(--aim-blue-dark) 100%);
+  color: white;
+  padding: 2px 4px;
+  font-weight: bold;
+  font-size: 11px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: move;
+  /* Classic title bar styling */
+  border-bottom: 1px solid var(--aim-blue-dark);
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+}
+
+.aim-window-title {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.aim-window-controls {
+  display: flex;
+  gap: 2px;
+}
+
+.aim-window-control {
+  width: 16px;
+  height: 14px;
+  background: #c0c0c0;
+  border: 1px outset #c0c0c0;
+  font-size: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Classic Windows button styling */
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  border-right-color: #808080;
+  border-bottom-color: #808080;
+  font-family: 'Marlett', 'MS Sans Serif', sans-serif;
+}
+
+.aim-window-control:hover {
+  background: #d0d0d0;
+}
+
+.aim-window-control:active {
+  border: 1px inset #c0c0c0;
+  border-top-color: #808080;
+  border-left-color: #808080;
+  border-right-color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+.aim-window-content {
+  padding: 8px;
+  background: #f0f0f0;
+}
+
+/* Login Window Specific */
+.login-window {
+  width: 280px;
+  height: 200px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login-logo {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.login-logo h1 {
+  color: #0054e3;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.form-label {
+  font-size: 11px;
+  font-weight: bold;
+  color: #333;
+}
+
+.form-input {
+  padding: 2px 4px;
+  border: 2px inset #c0c0c0;
+  background: white;
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 11px;
+  height: 18px;
+}
+
+.form-input:focus {
+  outline: none;
+  background: #ffffcc;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.aim-button {
+  padding: 2px 16px;
+  border: 2px outset #c0c0c0;
+  background: #f0f0f0;
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 11px;
+  cursor: pointer;
+  min-width: 60px;
+  height: 23px;
+}
+
+.aim-button:hover {
+  background: #f8f8f8;
+}
+
+.aim-button:active {
+  border: 2px inset #c0c0c0;
+  background: #e8e8e8;
+}
+
+.aim-button:disabled {
+  color: #808080;
+  cursor: not-allowed;
+  background: #f0f0f0;
+}
+
+.aim-button-primary {
+  background: #0054e3;
+  color: white;
+  border: 2px outset #0054e3;
+}
+
+.aim-button-primary:hover {
+  background: #0066ff;
+}
+
+.aim-button-primary:active {
+  border: 2px inset #0054e3;
+  background: #0040a6;
+}
+
+/* Registration Window */
+.registration-window {
+  width: 320px;
+  height: 280px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Error Display */
+.error-message {
+  background: #ffeeee;
+  border: 1px solid #cc0000;
+  color: #cc0000;
+  padding: 4px 8px;
+  font-size: 10px;
+  margin-bottom: 8px;
+  border-radius: 0;
+}
+
+.loading-indicator {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  color: #666;
+}
+
+.loading-dots {
+  animation: loading-dots 1.5s infinite;
+}
+
+@keyframes loading-dots {
+  0%, 20% { content: '.'; }
+  40% { content: '..'; }
+  60%, 100% { content: '...'; }
+}
+
+/* AIM Status Icons */
+.aim-status-icon {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.aim-status-icon.online {
+  background: var(--aim-status-online);
+  box-shadow: 0 0 3px rgba(0, 255, 0, 0.5);
+}
+
+.aim-status-icon.away {
+  background: var(--aim-status-away);
+  box-shadow: 0 0 3px rgba(255, 255, 0, 0.5);
+}
+
+.aim-status-icon.offline {
+  background: var(--aim-status-offline);
+  border-color: #666;
+}
+
+.aim-status-icon.invisible {
+  background: transparent;
+  border: 2px dashed var(--aim-status-offline);
+}
+
+/* AIM Logo and Branding */
+.aim-logo {
+  width: 16px;
+  height: 16px;
+  background: var(--aim-blue);
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 10px;
+  border-radius: 2px;
+}
+
+/* Classic AIM Scrollbars */
+.aim-scrollbar::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+.aim-scrollbar::-webkit-scrollbar-track {
+  background: var(--aim-gray-light);
+  border: 1px inset var(--aim-border-dark);
+}
+
+.aim-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--aim-gray) 0%, var(--aim-gray-dark) 100%);
+  border: 1px outset var(--aim-border-dark);
+  border-top-color: var(--aim-border-light);
+  border-left-color: var(--aim-border-light);
+}
+
+.aim-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, var(--aim-gray-dark) 0%, #c0c0c0 100%);
+}
+
+.aim-scrollbar::-webkit-scrollbar-corner {
+  background: var(--aim-gray);
+}
+
+/* Link styling */
+.auth-link {
+  color: var(--aim-text-link);
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: var(--aim-font-size-small);
+  text-align: center;
+  margin-top: 8px;
+}
+
+.auth-link:hover {
+  color: var(--aim-blue-light);
+}
+
+/* Checkbox styling */
+.form-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+}
+
+.form-checkbox input[type="checkbox"] {
+  width: 12px;
+  height: 12px;
+}
+
+/* Responsive Design for Authentic AIM Styling */
+@media (max-width: 768px) {
+  .aim-window {
+    font-size: var(--aim-font-size-small);
+    border-width: 1px;
+  }
+
+  .aim-window-header {
+    padding: 1px 3px;
+    font-size: var(--aim-font-size-small);
+  }
+
+  .aim-window-control {
+    width: 14px;
+    height: 12px;
+    font-size: 7px;
+  }
+
+  .aim-button {
+    padding: 1px 12px;
+    font-size: var(--aim-font-size-small);
+    min-width: 50px;
+    height: 20px;
+  }
+
+  .form-input {
+    padding: 1px 3px;
+    font-size: var(--aim-font-size-small);
+    height: 16px;
+  }
+
+  .aim-status-icon {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .aim-window {
+    font-size: 9px;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .aim-window-header {
+    padding: 1px 2px;
+    font-size: 9px;
+  }
+
+  .aim-window-control {
+    width: 12px;
+    height: 10px;
+    font-size: 6px;
+  }
+
+  .aim-button {
+    padding: 1px 8px;
+    font-size: 9px;
+    min-width: 40px;
+    height: 18px;
+  }
+
+  .form-input {
+    padding: 1px 2px;
+    font-size: 9px;
+    height: 14px;
+  }
+
+  .aim-status-icon {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+/* High DPI Display Support */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .aim-window {
+    border-width: 1px;
+  }
+
+  .aim-window-control {
+    border-width: 1px;
+  }
+
+  .aim-button {
+    border-width: 1px;
+  }
+
+  .form-input {
+    border-width: 1px;
+  }
+}
+
+/* Dark Mode Support (while maintaining AIM authenticity) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --aim-gray: #3c3c3c;
+    --aim-gray-light: #4a4a4a;
+    --aim-gray-dark: #2a2a2a;
+    --aim-text-primary: #ffffff;
+    --aim-text-secondary: #cccccc;
+  }
+
+  .aim-window {
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+  }
+}

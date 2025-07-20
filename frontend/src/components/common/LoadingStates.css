@@ -1,0 +1,351 @@
+/* Loading Spinner */
+.loading-spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner-circle {
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #0066cc;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loading-spinner.small .spinner-circle {
+  width: 16px;
+  height: 16px;
+  border-width: 1px;
+}
+
+.loading-spinner.medium .spinner-circle {
+  width: 24px;
+  height: 24px;
+  border-width: 2px;
+}
+
+.loading-spinner.large .spinner-circle {
+  width: 32px;
+  height: 32px;
+  border-width: 3px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Loading Dots */
+.loading-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.loading-dots .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #0066cc;
+  animation: dot-pulse 1.4s ease-in-out infinite both;
+}
+
+.loading-dots .dot:nth-child(1) { animation-delay: -0.32s; }
+.loading-dots .dot:nth-child(2) { animation-delay: -0.16s; }
+.loading-dots .dot:nth-child(3) { animation-delay: 0s; }
+
+@keyframes dot-pulse {
+  0%, 80%, 100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Loading Bar */
+.loading-bar {
+  width: 100%;
+  height: 4px;
+  background-color: #f0f0f0;
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.bar-fill {
+  height: 100%;
+  background-color: #0066cc;
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+.loading-bar.indeterminate .bar-fill {
+  width: 30% !important;
+  animation: indeterminate-bar 2s linear infinite;
+}
+
+@keyframes indeterminate-bar {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(400%);
+  }
+}
+
+/* Skeleton */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton.animate {
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Message Skeleton */
+.message-skeleton-container {
+  padding: 8px;
+}
+
+.message-skeleton {
+  margin-bottom: 12px;
+  padding: 8px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  background: #fafafa;
+}
+
+.message-header-skeleton {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.message-content-skeleton {
+  margin-top: 4px;
+}
+
+/* Buddy List Skeleton */
+.buddy-list-skeleton {
+  padding: 4px;
+}
+
+.buddy-skeleton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  margin-bottom: 2px;
+}
+
+.buddy-info-skeleton {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Loading Overlay */
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.loading-overlay.with-backdrop {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(2px);
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+  background: white;
+  border: 2px outset #c0c0c0;
+  border-radius: 4px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.loading-message {
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 11px;
+  color: #000;
+  text-align: center;
+}
+
+/* Inline Loading */
+.inline-loading {
+  display: inline-flex;
+  align-items: center;
+  min-height: 20px;
+}
+
+/* Lazy Loading */
+.lazy-loading {
+  position: relative;
+}
+
+.lazy-loading-indicator {
+  display: flex;
+  justify-content: center;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  border-top: 1px solid #e0e0e0;
+}
+
+/* Pulse Loading */
+.pulse-loading {
+  transition: opacity 0.3s ease;
+}
+
+.pulse-loading.loading {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* AIM-specific loading styles */
+.aim-loading-animation {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 11px;
+}
+
+.aim-loading-dot {
+  width: 4px;
+  height: 4px;
+  background-color: #0066cc;
+  border-radius: 50%;
+  animation: aim-dot-bounce 1.4s ease-in-out infinite both;
+}
+
+.aim-loading-dot:nth-child(1) { animation-delay: -0.32s; }
+.aim-loading-dot:nth-child(2) { animation-delay: -0.16s; }
+.aim-loading-dot:nth-child(3) { animation-delay: 0s; }
+
+@keyframes aim-dot-bounce {
+  0%, 80%, 100% {
+    transform: scale(0.8) translateY(0);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1.2) translateY(-2px);
+    opacity: 1;
+  }
+}
+
+/* Connection loading states */
+.connection-loading {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  background: #ffffcc;
+  border: 1px solid #ffcc00;
+  border-radius: 3px;
+  font-size: 10px;
+  font-family: 'MS Sans Serif', sans-serif;
+}
+
+.connection-loading .loading-spinner {
+  margin-right: 4px;
+}
+
+/* Smooth transitions */
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+.fade-out {
+  animation: fadeOut 0.3s ease-out;
+}
+
+.slide-in-up {
+  animation: slideInUp 0.3s ease-out;
+}
+
+.slide-in-down {
+  animation: slideInDown 0.3s ease-out;
+}
+
+.scale-in {
+  animation: scaleIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

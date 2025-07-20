@@ -1,0 +1,363 @@
+/* BuddyList Component Styles */
+
+.buddy-list-window {
+  width: 200px;
+  height: 400px;
+  resize: both;
+  overflow: hidden;
+  min-width: 180px;
+  min-height: 250px;
+  position: fixed;
+  z-index: 1000;
+}
+
+.buddy-list-content {
+  padding: 0;
+  height: calc(100% - 20px);
+  overflow-y: auto;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+.buddy-list-content {
+  @extend .aim-scrollbar;
+}
+
+.buddy-list-icon {
+  margin-right: 4px;
+}
+
+/* User Info Section */
+.buddy-list-user-info {
+  background: linear-gradient(to bottom, #f0f0f0 0%, #e0e0e0 100%);
+  border-bottom: 1px solid #c0c0c0;
+  padding: 6px 8px;
+  font-size: 11px;
+}
+
+.user-screen-name {
+  font-weight: bold;
+  color: #000080;
+  margin-bottom: 2px;
+}
+
+.user-status {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  color: #666;
+}
+
+.status-icon {
+  font-size: 8px;
+  font-weight: bold;
+}
+
+/* Buddy Groups */
+.buddy-groups {
+  flex: 1;
+}
+
+.buddy-group {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.buddy-group-header {
+  background: linear-gradient(to bottom, #f8f8f8 0%, #e8e8e8 100%);
+  border-bottom: 1px solid #d0d0d0;
+  padding: 4px 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: bold;
+  color: #333;
+  user-select: none;
+}
+
+.buddy-group-header:hover {
+  background: linear-gradient(to bottom, #f0f0f0 0%, #e0e0e0 100%);
+}
+
+.group-expand-icon {
+  font-size: 8px;
+  width: 10px;
+  text-align: center;
+}
+
+.group-name {
+  flex: 1;
+}
+
+.group-count {
+  font-size: 10px;
+  color: #666;
+  font-weight: normal;
+}
+
+.buddy-group-content {
+  background: #ffffff;
+}
+
+/* Buddy Items */
+.buddy-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 16px;
+  font-size: 11px;
+  cursor: pointer;
+  user-select: none;
+  border-bottom: 1px dotted #f0f0f0;
+}
+
+.buddy-item:hover {
+  background: #e6f3ff;
+}
+
+.buddy-item.online {
+  color: #000;
+  font-weight: normal;
+}
+
+.buddy-item.offline {
+  color: #808080;
+  font-style: italic;
+}
+
+.buddy-status-icon {
+  font-size: 8px;
+  font-weight: bold;
+  width: 10px;
+  text-align: center;
+}
+
+.buddy-screen-name {
+  flex: 1;
+}
+
+.buddy-away-indicator {
+  font-size: 10px;
+  opacity: 0.7;
+}
+
+/* Empty States */
+.buddy-group-empty {
+  padding: 8px 16px;
+  font-size: 10px;
+  color: #999;
+  font-style: italic;
+  text-align: center;
+}
+
+.buddy-list-empty {
+  padding: 20px;
+  text-align: center;
+  color: #666;
+  font-size: 11px;
+}
+
+.buddy-list-empty p {
+  margin: 4px 0;
+}
+
+/* Toolbar */
+.buddy-list-toolbar {
+  display: flex;
+  justify-content: space-around;
+  padding: 4px;
+  background: linear-gradient(to bottom, #f0f0f0 0%, #e0e0e0 100%);
+  border-bottom: 1px solid #c0c0c0;
+}
+
+.buddy-list-tool-button {
+  width: 24px;
+  height: 24px;
+  border: 1px outset #c0c0c0;
+  background: #f0f0f0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  padding: 0;
+}
+
+.buddy-list-tool-button:hover {
+  background: #e0e0e0;
+}
+
+.buddy-list-tool-button:active {
+  border: 1px inset #c0c0c0;
+}
+
+/* Loading and Error States */
+.buddy-list-loading {
+  padding: 20px;
+  text-align: center;
+  color: #666;
+  font-size: 11px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.aim-loading-animation {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.aim-loading-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #0054e3;
+  border-radius: 50%;
+  animation: aim-loading-bounce 1.4s infinite ease-in-out both;
+}
+
+.aim-loading-dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.aim-loading-dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes aim-loading-bounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+
+.buddy-list-error {
+  padding: 20px;
+  text-align: center;
+  color: #cc0000;
+  font-size: 11px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.buddy-list-error .aim-button {
+  margin-top: 8px;
+  font-size: 10px;
+  padding: 2px 12px;
+}
+
+/* Scrollbar Styling */
+.buddy-list-content::-webkit-scrollbar {
+  width: 16px;
+}
+
+.buddy-list-content::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border: 1px inset #c0c0c0;
+}
+
+.buddy-list-content::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #e0e0e0 0%, #c0c0c0 100%);
+  border: 1px outset #c0c0c0;
+}
+
+.buddy-list-content::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #d0d0d0 0%, #b0b0b0 100%);
+}
+
+.buddy-list-content::-webkit-scrollbar-button {
+  background: linear-gradient(to bottom, #e0e0e0 0%, #c0c0c0 100%);
+  border: 1px outset #c0c0c0;
+  height: 16px;
+}
+
+.buddy-list-content::-webkit-scrollbar-button:hover {
+  background: linear-gradient(to bottom, #d0d0d0 0%, #b0b0b0 100%);
+}
+
+/* Context Menu Styling (for future implementation) */
+.buddy-context-menu {
+  position: fixed;
+  background: #f0f0f0;
+  border: 2px outset #c0c0c0;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  z-index: 2000;
+  min-width: 120px;
+}
+
+.buddy-context-menu-item {
+  padding: 4px 12px;
+  font-size: 11px;
+  cursor: pointer;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.buddy-context-menu-item:hover {
+  background: #0054e3;
+  color: white;
+}
+
+/* Menu Bar Styles */
+.buddy-list-menu {
+  background: #ece9d8;
+  border-bottom: 1px solid #c0c0c0;
+  padding: 2px 4px;
+  display: flex;
+  gap: 4px;
+}
+
+.menu-button {
+  background: none;
+  border: 1px solid transparent;
+  padding: 2px 8px;
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 11px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.menu-button:hover {
+  background: #d4d0c8;
+  border-color: #a0a0a0;
+}
+
+.menu-button:active {
+  background: #c0c0c0;
+  border-style: inset;
+}
+
+.buddy-context-menu-item:last-child {
+  border-bottom: none;
+}
+
+.buddy-context-menu-separator {
+  height: 1px;
+  background: #c0c0c0;
+  margin: 2px 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .buddy-list-window {
+    width: 180px;
+    height: 350px;
+  }
+  
+  .buddy-item {
+    padding: 3px 12px;
+  }
+  
+  .buddy-group-header {
+    padding: 5px 8px;
+  }
+}
