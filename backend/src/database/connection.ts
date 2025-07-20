@@ -1,6 +1,7 @@
 import sqlite3 from 'sqlite3';
 import { Database, open } from 'sqlite';
 import path from 'path';
+import fs from 'fs';
 
 let db: Database | null = null;
 
@@ -10,9 +11,34 @@ export async function initializeDatabase(): Promise<Database> {
   }
 
   try {
-    const dbPath = process.env.NODE_ENV === 'test' 
-      ? ':memory:' 
-      : path.join(__dirname, '../../data/aim.db');
+    let dbPath: string;
+
+    if (process.env.NODE_ENV === 'test') {
+      dbPath = ':memory:';
+    } else {
+      // Use environment variable if available, otherwise fall back to appropriate defaults
+      dbPath = process.env.DATABASE_URL || process.env.DB_PATH;
+
+      if (!dbPath) {
+        // For production/deployment environments, use /tmp which is typically writable
+        if (process.env.NODE_ENV === 'production') {
+          dbPath = '/tmp/aim.db';
+        } else {
+          // For development, use the local data directory
+          dbPath = path.join(__dirname, '../../data/aim.db');
+        }
+      }
+
+      // Ensure the directory exists (except for :memory: databases)
+      if (dbPath !== ':memory:') {
+        const dbDir = path.dirname(dbPath);
+        if (!fs.existsSync(dbDir)) {
+          fs.mkdirSync(dbDir, { recursive: true });
+        }
+      }
+    }
+
+    console.log(`Initializing database at: ${dbPath}`);
 
     db = await open({
       filename: dbPath,
