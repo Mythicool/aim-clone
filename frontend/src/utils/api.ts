@@ -4,7 +4,29 @@
 
 // Get the API base URL from environment variables
 export const getApiUrl = (): string => {
-  return import.meta.env.VITE_API_URL || 'http://localhost:3001';
+  const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+
+  // Debug logging to help identify environment variable issues
+  if (import.meta.env.DEV) {
+    console.log('Environment variables:', {
+      VITE_API_URL: import.meta.env.VITE_API_URL,
+      MODE: import.meta.env.MODE,
+      PROD: import.meta.env.PROD
+    });
+    console.log('Using API URL:', apiUrl);
+  }
+
+  // Prevent using placeholder URLs in production
+  if (apiUrl.includes('placeholder.com')) {
+    console.error('ERROR: Using placeholder API URL! Check environment variables.');
+    console.error('Current API URL:', apiUrl);
+    console.error('Environment variables:', import.meta.env);
+
+    // Fallback to the correct production URL
+    return 'https://aim-backend-pg2h.onrender.com';
+  }
+
+  return apiUrl;
 };
 
 // Create a full API URL from a relative path

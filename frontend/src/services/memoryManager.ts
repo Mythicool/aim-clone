@@ -255,18 +255,24 @@ class MemoryManager {
       this.performanceObserver = new PerformanceObserver((list) => {
         const entries = list.getEntries();
         entries.forEach(entry => {
-          if (entry.entryType === 'memory') {
-            // Handle memory pressure
-            this.performCleanup();
+          // Monitor navigation and resource entries for performance insights
+          if (entry.entryType === 'navigation' || entry.entryType === 'resource') {
+            // Check for performance issues that might indicate memory pressure
+            if (entry.duration > 1000) { // Slow operations might indicate memory issues
+              this.performCleanup();
+            }
           }
         });
       });
 
       try {
-        this.performanceObserver.observe({ entryTypes: ['memory'] });
+        // Use supported entry types instead of 'memory' which doesn't exist
+        this.performanceObserver.observe({
+          entryTypes: ['navigation', 'resource']
+        });
       } catch (e) {
-        // Memory API not supported
-        console.warn('Memory performance monitoring not supported');
+        // Performance monitoring not supported
+        console.warn('Performance monitoring not supported:', e);
       }
     }
   }
@@ -277,9 +283,18 @@ class MemoryManager {
       if ('memory' in performance) {
         const memory = (performance as any).memory;
         const usedPercent = (memory.usedJSHeapSize / memory.jsHeapSizeLimit) * 100;
-        
+
         if (usedPercent > 80) {
           console.warn('High memory usage detected, performing cleanup');
+          this.performCleanup();
+        }
+      } else {
+        // Fallback: Monitor conversation cache size when performance.memory is not available
+        const totalCacheSize = Object.values(this.conversationCache)
+          .reduce((total, conv) => total + conv.size, 0);
+
+        if (totalCacheSize > this.options.maxTotalMemoryMB * 1024 * 1024) {
+          console.warn('Cache size limit exceeded, performing cleanup');
           this.performCleanup();
         }
       }
