@@ -17,6 +17,30 @@ const router = Router();
 // Apply authentication middleware to all buddy routes
 router.use(authMiddleware);
 
+// Get buddy list (root route for compatibility)
+router.get('/', async (req: Request, res: Response) => {
+  try {
+    const userId = req.user?.id;
+
+    if (!userId) {
+      return res.status(401).json({ error: { code: 'UNAUTHORIZED', message: 'User not authenticated' } });
+    }
+
+    const buddyService = createBuddyService();
+
+    const buddies = await buddyService.getBuddyList(userId);
+    res.json(buddies);
+  } catch (error) {
+    console.error('Error getting buddy list:', error);
+    res.status(500).json({
+      error: {
+        code: 'INTERNAL_ERROR',
+        message: 'Failed to retrieve buddy list'
+      }
+    });
+  }
+});
+
 // Add buddy by screen name (sends buddy request)
 router.post('/add', async (req: Request, res: Response) => {
   try {

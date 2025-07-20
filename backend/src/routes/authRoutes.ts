@@ -43,10 +43,7 @@ router.post('/register', async (req: Request, res: Response): Promise<void> => {
     const authService = await initializeAuthService();
     const result = await authService.register(sanitizedData);
 
-    res.status(201).json({
-      success: true,
-      data: result
-    });
+    res.status(201).json(result);
   } catch (error) {
     console.error('Registration error:', error);
     
@@ -104,10 +101,7 @@ router.post('/login', async (req: Request, res: Response): Promise<void> => {
     const authService = await initializeAuthService();
     const result = await authService.login(sanitizedCredentials);
 
-    res.json({
-      success: true,
-      data: result
-    });
+    res.json(result);
   } catch (error) {
     console.error('Login error:', error);
     
