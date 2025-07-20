@@ -39,20 +39,33 @@ app.use('/api/users', userRoutes);
 app.use('/api/buddies', buddyRoutes);
 app.use('/api/messages', messageRoutes);
 
-// Health check route with database status
-app.get('/health', async (req, res) => {
+// Simple health check route (for Railway deployment)
+app.get('/health', (req, res) => {
+  res.json({
+    status: 'OK',
+    message: 'AIM Backend Server is running',
+    timestamp: new Date().toISOString(),
+    port: PORT
+  });
+});
+
+// Detailed health check route with database status
+app.get('/health/detailed', async (req, res) => {
   try {
     const dbHealth = await dbService.healthCheck();
-    res.json({ 
-      status: 'OK', 
+    res.json({
+      status: 'OK',
       message: 'AIM Backend Server is running',
-      database: dbHealth
+      database: dbHealth,
+      timestamp: new Date().toISOString(),
+      port: PORT
     });
   } catch (error) {
-    res.status(500).json({ 
-      status: 'ERROR', 
+    res.status(500).json({
+      status: 'ERROR',
       message: 'Server health check failed',
-      error: error instanceof Error ? error.message : 'Unknown error'
+      error: error instanceof Error ? error.message : 'Unknown error',
+      timestamp: new Date().toISOString()
     });
   }
 });
@@ -97,10 +110,11 @@ async function startServer() {
     eventHandlers = new SocketEventHandlers(io);
     console.log('WebSocket services initialized');
 
-    // Start server
-    server.listen(PORT, () => {
+    // Start server (bind to 0.0.0.0 for Railway deployment)
+    server.listen(PORT, '0.0.0.0', () => {
       console.log(`AIM Backend server running on port ${PORT}`);
       console.log(`WebSocket server ready for connections`);
+      console.log(`Health check available at: http://0.0.0.0:${PORT}/health`);
     });
   } catch (error) {
     console.error('Failed to start server:', error);
