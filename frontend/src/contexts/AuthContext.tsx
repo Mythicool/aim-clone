@@ -141,6 +141,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     try {
       const apiUrl = getApiUrl();
+      console.log('Attempting registration to:', `${apiUrl}/api/auth/register`);
+
       const response = await fetch(`${apiUrl}/api/auth/register`, {
         method: 'POST',
         headers: {
@@ -149,8 +151,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         body: JSON.stringify({ screenName, password, email }),
       });
 
+      console.log('Registration response status:', response.status);
+
       if (!response.ok) {
         const errorData = await response.json();
+        console.error('Registration error:', errorData);
         throw new Error(errorData.error?.message || 'Registration failed');
       }
 
@@ -165,9 +170,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         payload: { user: authData.user, token: authData.token } 
       });
     } catch (error) {
-      dispatch({ 
-        type: 'AUTH_ERROR', 
-        payload: error instanceof Error ? error.message : 'Registration failed' 
+      console.error('Registration failed:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Registration failed';
+
+      // Add more specific error messages for common issues
+      let userFriendlyMessage = errorMessage;
+      if (errorMessage.includes('fetch')) {
+        userFriendlyMessage = 'Unable to connect to server. Please check your internet connection and try again.';
+      } else if (errorMessage.includes('timeout')) {
+        userFriendlyMessage = 'Request timed out. The server might be starting up, please try again in a moment.';
+      }
+
+      dispatch({
+        type: 'AUTH_ERROR',
+        payload: userFriendlyMessage
       });
     }
   };
