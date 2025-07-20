@@ -8,6 +8,7 @@ import authRoutes from './routes/authRoutes';
 import userRoutes from './routes/userRoutes';
 import buddyRoutes from './routes/buddyRoutes';
 import messageRoutes from './routes/messageRoutes';
+import adminRoutes from './routes/adminRoutes';
 import { socketAuthMiddleware, AuthenticatedSocket } from './middleware/socketAuthMiddleware';
 import { ConnectionManager } from './services/ConnectionManager';
 import { SocketEventHandlers } from './services/SocketEventHandlers';
@@ -38,6 +39,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/buddies', buddyRoutes);
 app.use('/api/messages', messageRoutes);
+app.use('/api/admin', adminRoutes);
 
 // Simple health check route (for Railway deployment)
 app.get('/health', (req: any, res: any) => {
