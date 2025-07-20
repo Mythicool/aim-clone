@@ -12,4 +12,21 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    outDir: 'dist',
+    sourcemap: false,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          socket: ['socket.io-client'],
+        },
+      },
+    },
+  },
+  define: {
+    // Replace environment variables at build time
+    __API_URL__: JSON.stringify(process.env.VITE_API_URL || 'http://localhost:3001'),
+    __SOCKET_URL__: JSON.stringify(process.env.VITE_SOCKET_URL || 'http://localhost:3001'),
+  },
 })
