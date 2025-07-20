@@ -159,7 +159,7 @@ export const useOptimizedSocket = (
         processedHandlers.forEach(({ event, key }) => {
           const handler = eventHandlersRef.current.get(key);
           if (handler && socketRef.current) {
-            socketRef.current.off(event, handler);
+            socketRef.current.off(event, handler as any);
           }
           eventHandlersRef.current.delete(key);
         });
@@ -259,7 +259,7 @@ export const useOptimizedSocket = (
       eventHandlersRef.current.forEach((handler, key) => {
         const eventName = processedHandlers.find(h => h.key === key)?.event;
         if (eventName && socketRef.current) {
-          socketRef.current.off(eventName, handler);
+          socketRef.current.off(eventName, handler as any);
         }
       });
     }

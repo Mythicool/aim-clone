@@ -26,7 +26,7 @@ export const WindowTransition: React.FC<WindowTransitionProps> = ({
 }) => {
   const [shouldRender, setShouldRender] = useState(isVisible);
   const [animationState, setAnimationState] = useState<'entering' | 'entered' | 'exiting' | 'exited'>('exited');
-  const timeoutRef = useRef<NodeJS.Timeout>();
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (isVisible) {
@@ -69,7 +69,7 @@ export const WindowTransition: React.FC<WindowTransitionProps> = ({
     return `${baseClass} ${typeClass} ${stateClass} ${className}`;
   };
 
-  const transitionStyle: React.CSSProperties = {
+  const transitionStyle: React.CSSProperties & { [key: string]: any } = {
     ...style,
     '--transition-duration': `${duration}ms`,
   };

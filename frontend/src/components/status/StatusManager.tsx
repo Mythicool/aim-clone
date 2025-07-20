@@ -197,7 +197,7 @@ export const StatusManager: React.FC<StatusManagerProps> = ({ onStatusChange }) 
       {showAwayDialog && (
         <AwayMessageDialog 
           onClose={handleAwayDialogClose}
-          initialMessage={user?.awayMessage || ''}
+          initialMessage={user?.profile?.awayMessage || ''}
         />
       )}
     </>

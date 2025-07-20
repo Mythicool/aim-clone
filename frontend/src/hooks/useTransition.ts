@@ -27,7 +27,7 @@ export const useTransition = (
   } = options;
 
   const [state, setState] = useState<TransitionState>(show ? 'entered' : 'exited');
-  const timeoutRef = useRef<NodeJS.Timeout>();
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const clearTimeout = useCallback(() => {
     if (timeoutRef.current) {
@@ -225,7 +225,7 @@ export const useAnimationClass = (
   duration: number = 300
 ) => {
   const [className, setClassName] = useState('');
-  const timeoutRef = useRef<NodeJS.Timeout>();
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (timeoutRef.current) {

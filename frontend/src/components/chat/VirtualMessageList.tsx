@@ -70,7 +70,7 @@ export const VirtualMessageList: React.FC<VirtualMessageListProps> = ({
   const [scrollTop, setScrollTop] = useState(0);
   const [isScrolledToBottom, setIsScrolledToBottom] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
-  const scrollTimeoutRef = useRef<NodeJS.Timeout>();
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Calculate visible range
   const visibleRange = useMemo(() => {

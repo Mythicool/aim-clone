@@ -14,13 +14,15 @@ type AuthAction =
   | { type: 'AUTH_SUCCESS'; payload: { user: User; token: string } }
   | { type: 'AUTH_ERROR'; payload: string }
   | { type: 'LOGOUT' }
-  | { type: 'CLEAR_ERROR' };
+  | { type: 'CLEAR_ERROR' }
+  | { type: 'UPDATE_USER'; payload: Partial<User> };
 
 interface AuthContextType extends AuthState {
   login: (screenName: string, password: string) => Promise<void>;
   register: (screenName: string, password: string, email: string) => Promise<void>;
   logout: () => void;
   clearError: () => void;
+  updateUser: (updates: Partial<User>) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -67,6 +69,11 @@ function authReducer(state: AuthState, action: AuthAction): AuthState {
       return {
         ...state,
         error: null,
+      };
+    case 'UPDATE_USER':
+      return {
+        ...state,
+        user: state.user ? { ...state.user, ...action.payload } : null,
       };
     default:
       return state;
@@ -172,12 +179,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     dispatch({ type: 'CLEAR_ERROR' });
   };
 
+  const updateUser = (updates: Partial<User>) => {
+    dispatch({ type: 'UPDATE_USER', payload: updates });
+  };
+
   const value: AuthContextType = {
     ...state,
     login,
     register,
     logout,
     clearError,
+    updateUser,
   };
 
   return (

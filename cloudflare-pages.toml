@@ -8,10 +8,10 @@
 
 [build.environment]
   # Node.js version
-  NODE_VERSION = "18"
-  
+  NODE_VERSION = "20"
+
   # NPM version
-  NPM_VERSION = "9"
+  NPM_VERSION = "10"
 
 # Environment variables for production
 [env.production]

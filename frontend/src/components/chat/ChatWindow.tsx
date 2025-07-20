@@ -215,7 +215,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
     }
 
     // Stop typing indicator after 3 seconds of inactivity
-    typingTimeoutRef.current = setTimeout(() => {
+    typingTimeoutRef.current = window.setTimeout(() => {
       if (isTyping) {
         setIsTyping(false);
         socket.emit('conversation:typing', {

@@ -311,12 +311,12 @@ export const BuddyList: React.FC<BuddyListProps> = ({
 
   const handleBuddyAddedFromDialog = (screenName: string) => {
     // Refresh buddy list
-    loadBuddyList();
+    // loadBuddyList();
   };
 
   const handleBuddyRemoved = (buddy: Buddy) => {
     // Remove buddy from local state
-    setBuddies(prev => prev.filter(b => b.id !== buddy.id));
+    // setBuddies(prev => prev.filter(b => b.id !== buddy.id));
     setSelectedBuddy(null);
   };
 
@@ -538,7 +538,7 @@ export const BuddyList: React.FC<BuddyListProps> = ({
                   >
                     <span
                       className={`aim-status-icon ${buddy.status.toLowerCase()}`}
-                      title={getStatusText(buddy.status)}
+                      title={buddy.status}
                     >
                     </span>
                     <span className="buddy-screen-name">{buddy.screenName}</span>
